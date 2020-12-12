@@ -5,6 +5,13 @@ import seaborn as sns
 
 
 def plot_footprint_gdp(data, footprints, capacities, gdpColors):
+    '''
+    Description: Plots a scatterplot of the ecological footprints with the corresponding capacities
+    Parameters: data is a dataframe of all our ecological data
+                footprints is a list of strings of the various footprints
+                capacities is a list of strings of the various capacities
+                gdpColors is a list of RGB values in our color scheme of choice
+    '''
     plt.figure(figsize=(20, 10))
     annotate = 6
     for i,f in enumerate(footprints):
@@ -20,6 +27,13 @@ def plot_footprint_gdp(data, footprints, capacities, gdpColors):
     plt.show()
 
 def plot_footprint_hap(data, footprints, capacities, gdpColors):
+    '''
+    Description: Plots a scatterplot of the ecological footprints with the happiness score
+    Parameters: data is a dataframe of all our ecological data and happiness scores
+                footprints is a list of strings of the various footprints
+                capacities is a list of strings of the various capacities
+                gdpColors is a list of RGB values in our color scheme of choice
+    '''
 	style = dict(size=10, color='gray')
 	low = data[data['GDP per Capita']<=20000]
 	med = data[(data['GDP per Capita']>20000) & (data['GDP per Capita']<=60000)]
