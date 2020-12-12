@@ -1,5 +1,5 @@
 # ECE143-Final-Project
- Final project repo for ECE 143 Fall 2020
+ Final project repo for Group 12 ECE 143 Fall 2020
  
  You can read our proposal in Group 12 Proposal.pdf, and view our final presentation in Group 12 Final Presentation.pdf
  
