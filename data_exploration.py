@@ -79,7 +79,7 @@ def plot_happiness(data):
     plt.xlabel("Country")
     plt.title("GDP per Capita by Country, grouped by GDP classification")
     plt.legend(l)
-    plt.savefig('GDP vs Country.png')
+    plt.savefig('Visualizations/GDP vs Country.png')
     plt.show()
 
 """
