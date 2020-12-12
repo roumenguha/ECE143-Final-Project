@@ -7,13 +7,16 @@ from regress import polyfit, regress
 
 plt.style.use('seaborn')
 
-
 """
 Exploring Ecological data
 """
 # Some of this uses holoviews so we have the code in the notebook
 
 def plot_footprint_cap(data, footprints, capacities, gdpColors):
+    '''
+    This function compares a particular footprint with a particular capacity, for each ecological category.
+
+    '''
     plt.figure(figsize=(20, 10))
     annotate = 4
     for i,f in enumerate(footprints):
@@ -35,6 +38,10 @@ Exploring economic data
 
 
 def plot_hdi_gdp(data):
+    '''
+    This function plots GDP per Capita as a function of HDI
+    
+    '''
     plt.figure(figsize=(20, 10))
     labels = []
     for k, d in data.groupby('Region_x'):
@@ -52,13 +59,24 @@ def plot_hdi_gdp(data):
 Exploring Happiness data
 """
 def plot_happiness(data):
+    '''
+    This function plots GDP per Capita by Country, but grouped into sets by their values:
+        'Under 20000'
+        'Under 60000'
+        'Above 60000'
+    
+    '''
     data_Happiness_footprint = data[['Country','Happiness Score', 'HDI', 'GDP per Capita','Cropland Footprint', 'Grazing Footprint', 'Forest Footprint',
            'Carbon Footprint', 'Fish Footprint', 'Total Ecological Footprint']].sort_values(by='GDP per Capita')
 
     l = ['Under 20000', 'Under 60000', 'Above 60000']
-    gdpColors = list(reversed(sns.color_palette("viridis",as_cmap=False,n_colors=3)))
+    
+    # colorset we choose, returned as a list
+    gdpColors = list(reversed(sns.color_palette("viridis",as_cmap=False,n_colors=3))) 
 
     GDP_category_list = []
+    
+    # split countries into their groups
     for item in data_Happiness_footprint['GDP per Capita']:
         category = ''
         if item < 20000:
@@ -68,6 +86,7 @@ def plot_happiness(data):
         else:
             category = 'Above 60000'
         GDP_category_list.append(category)
+
     data_Happiness_footprint['GDP range'] = GDP_category_list
     data['GDP range'] = GDP_category_list
 
@@ -83,9 +102,12 @@ def plot_happiness(data):
     plt.show()
 
 """
-Case study
+Case study: Bhutan
 """
 def plot_hist_pop(data):
+    '''
+    Plots a histogram of countries' populations, with a marker for Bhutan to show comparative performance
+    '''
     data1 = data[data['Population (millions)'] < 400]
 
     plt.hist(data1['Population (millions)'], bins=30)
@@ -95,6 +117,9 @@ def plot_hist_pop(data):
     plt.legend(['Bhutan'])
 
 def plot_hist_gdp(data):
+    '''
+    Plots a histogram of countries' GDP per Capita, with a marker for Bhutan to show comparative performance
+    '''
     plt.hist(data['GDP per Capita'], bins=30)
     plt.axvline(x=data['GDP per Capita'][data.Country == 'Bhutan'].values[0], c='r')
     plt.title("Histogram: GDP per Capita")
@@ -103,6 +128,9 @@ def plot_hist_gdp(data):
     plt.savefig("Visualizations/Histogram - GDP per Capita.png", dpi=300, bbox_inches="tight")
 
 def plot_scatter_markbhutan(data, gdpColors):
+    '''
+    Plots a scatter plot of countries' happiness scores vs their ecological footprint, with a marker for Bhutan to show comparative performance
+    '''
     offset = 0.08
     style = dict(size=10, color='gray')
     low = data[data['GDP per Capita']<=20000]
