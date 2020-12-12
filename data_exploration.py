@@ -120,5 +120,5 @@ def plot_scatter_markbhutan(data, gdpColors):
     plt.title('Total Ecological Footprint v. Happiness Score')
     plt.xlabel('Happiness Score')
     plt.ylabel('Footprint')
-    plt.text(bhutanx- offset,bhutany+2*offset,'Bhutan', **style)
+    plt.text(bhutanx - offset, bhutany + 2*offset,'Bhutan', **style)
     plt.show()
